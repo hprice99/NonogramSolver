@@ -41,4 +41,11 @@ class Board:
             print('')
 
 board = Board(5, 10)
+
+for i in range(3):
+    board.fillCell(1, i, FILL)
+
+for i in range(3):
+    board.fillCell(2, i, BLANK)
+
 board.drawBoard()
