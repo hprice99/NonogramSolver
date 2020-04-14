@@ -40,6 +40,42 @@ class Board:
             # Print a new line
             print('')
 
+class Line:
+    def __init__(self, cells):
+        self.cells = cells
+    
+    def calculateSpan(self):
+        pass
+        
+# Function to extract a list of lines 
+def extractLines(lineInput):
+    started = False
+    lineStarted = False
+    lines = [[]]
+
+    for character in lineInput:
+        print(character)
+        if character == "[" and not started:
+            started = True
+        
+        if started and not lineStarted and character == "[":
+            line = []
+            lineStarted = True
+
+        if lineStarted and character != "]" and character != "[":
+            if character != "," and character != " ":
+                line.append(character)
+        
+        if lineStarted and character == "]":
+            lineStarted = False
+            lines.append(line)
+            print(line)
+    
+    del lines[0]
+
+    print(lines)
+    return lines
+
 board = Board(5, 10)
 
 for i in range(3):
@@ -49,3 +85,5 @@ for i in range(3):
     board.fillCell(2, i, BLANK)
 
 board.drawBoard()
+
+extractLines("[[4, 5], [5, 2]]")
